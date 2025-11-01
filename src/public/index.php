@@ -1,2 +1,1 @@
-<?php
-require '../init.php';
+<?php require '../init.php'; Router::route();
