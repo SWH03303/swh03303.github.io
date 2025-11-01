@@ -5,9 +5,7 @@ function render(string $component) {
 }
 
 function render_page(array|callable|string $content, array $g_opts = []) {
-	global $opts;
-	$opts = $g_opts;
-	$opts['title'] = $opts['title'] ?? 'Unnamed page';
+	global $opts; $opts = $g_opts;
 
 	render('wraps/top');
 	if (is_string($content)) { echo "$content"; }
