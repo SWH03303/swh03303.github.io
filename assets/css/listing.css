@@ -3,7 +3,8 @@
 main {
 	width: 1200px;
 	min-width: 75%;
-	align-items: flex-start;
+	flex-direction: row !important;
+	align-items: flex-start !important;
 
 	h1 {
 		z-index: 1; /* Raise header so its shadow is over the listings */
