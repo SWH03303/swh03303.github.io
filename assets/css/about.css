@@ -73,7 +73,7 @@ main #company-logo { max-width: 500px; margin-bottom: 20px; }
 }
 
 /* Ow< */
-main #another-box::after { display: none; }
+main:has(details:not([open])) #another-box::after { display: none; }
 #another-box {
 	position: relative;
 
