@@ -1,6 +1,6 @@
 <?php
 class Request {
-	public static function uri(): string {
+	public static function path(): string {
 		$path = strtok($_SERVER['REQUEST_URI'], '?');
 		return ltrim($path, '/');
 	}
@@ -30,27 +30,27 @@ class Catcher {
 }
 
 class Router {
-	private const DEFAULT_ROUTE = 'root';
+	private const DEFAULT = 'root';
 
-	private static function load_page(string $uri) {
-		$root = empty($uri);
-		$uri = $root? self::DEFAULT_ROUTE : $uri;
-		$path = PAGES_DIR . "/$uri.php";
+	private static function load_page(string $path) {
+		$root = empty($path);
+		$path = $root? self::DEFAULT : $path;
+		$path = PAGES_DIR . "/$path.php";
 		if ($root || is_readable($path)) {
-			require $path ?? self::DEFAULT_ROUTE;
+			require $path ?? self::DEFAULT;
 			exit;
 		}
 	}
 
-	public static function redirect(string $uri): never {
-		if ($uri == self::DEFAULT_ROUTE) { $uri = ''; }
-		header("Location: /$uri");
+	public static function redirect(string $path): never {
+		if ($path == self::DEFAULT) { $path = ''; }
+		header("Location: /$path");
 		exit;
 	}
 
 	public static function route() {
-		$uri = Request::uri();
-		self::load_page($uri);
+		$path = Request::path();
+		self::load_page($path);
 		Catcher::not_found();
 	}
 }
