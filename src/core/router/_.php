@@ -17,7 +17,7 @@ class Router {
 		return $mime;
 	}
 	private static function stream_asset(string $path) {
-		$file = ASSETS_DIR . $path;
+		$file = Dirs::ASSETS . $path;
 		if (!is_readable($file)) { return; }
 		$fd = fopen($file, 'rb');
 		if ($fd === false) { Catcher::internal_error(); }
@@ -47,7 +47,7 @@ class Router {
 	private static function load_page(string $path) {
 		$root = empty($path);
 		$path = $root? self::DEFAULT : $path;
-		$path = PAGES_DIR . "/$path.php";
+		$path = Dirs::PAGES . "/$path.php";
 		if ($root || is_readable($path)) {
 			require $path ?? self::DEFAULT;
 			exit;

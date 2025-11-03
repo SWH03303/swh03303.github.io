@@ -2,7 +2,7 @@
 function render(string $component, ?array $g_data = null) {
 	global $data;
 	if (!is_null($g_data)) { $data = $g_data; }
-	require COMPONENTS_DIR . "/$component.php";
+	require Dirs::COMPONENTS . "/$component.php";
 }
 
 function render_page(array|callable|string $content, array $g_data = []) {
