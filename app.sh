@@ -5,7 +5,9 @@ ENTRY='init.php'
 ADDRESS='127.0.0.1:9524'
 
 _err() { echo "Err: $1!" >&2; exit 1; }
+run() { echo "$@" >&2; exec "$@"; }
 
+has_php() { which php >/dev/null 2>&1; }
 find_php() {
 	for php in \
 		'/bin/php' \
@@ -22,5 +24,5 @@ find_php() {
 
 has_php && php='php' || find_php
 
-[ $# -gt 0 ] && exec "$php" "$ENTRY" "$@"
-exec "$php" --server "$ADDRESS" "$ENTRY"
+[ $# -gt 0 ] && run "$php" "$ENTRY" "$@"
+run "$php" --server "$ADDRESS" "$ENTRY"
