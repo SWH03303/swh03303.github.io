@@ -14,7 +14,9 @@ function render_nav() {
 } ?>
 <header class="flex">
 	<nav id="global-navigation" class="fill flex">
-		<ul class="fill flex"><?php render_nav() ?></ul>
+		<ul class="fill flex flex-o">
+			<?php render_nav() ?>
+			<li class="fill"></li>
+		</ul>
 	</nav>
-	<a href="mailto:info@duoordxe.com.au">Contact Us</a>
 </header>
