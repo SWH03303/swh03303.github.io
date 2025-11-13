@@ -5,7 +5,7 @@ $type = $data[2] ?? $data['type'] ?? 'text';
 $persist = $data[3] ?? $data['persist'] ?? ($type == 'text');
 $required = $data[4] ?? $data['required'] ?? true;
 
-$value = (Request::is_post() && $persist)? html_sanitize(Request::param($name)) : null;
+$value = (Request::is_post() && $persist)? Request::param($name) : null;
 $value = is_null($value)? '' : ' value="' . html_sanitize($value) . '"';
 
 global $_input_counter;
