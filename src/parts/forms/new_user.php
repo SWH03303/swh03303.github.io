@@ -7,4 +7,4 @@
 	?>
 	<button type="submit">Sign up!</button>
 </form>
-<span><?php var_dump($data['errors']) ?></span>
+<?php render('errors', ['messages' => $data['errors']]); ?>
