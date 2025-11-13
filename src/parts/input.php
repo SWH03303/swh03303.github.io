@@ -11,12 +11,13 @@ $value = is_null($value)? '' : ' value="' . html_sanitize($value) . '"';
 global $_input_counter;
 $_input_counter = is_null($_input_counter)? 0 : $_input_counter;
 $id = 'input-auto-' . ($_input_counter += 1);
+$focus = ($_input_counter == 1)? ' autofocus' : '';
 $required = $required? ' required' : '';
 
 echo <<<TEXT
 	<div class="flex">
 		<label for="$id">$label</label>
-		<input id="$id" class="fill" type="$type" name="$name"$value$required>
+		<input id="$id" class="fill" type="$type" name="$name"$value$required$focus>
 	</div>
 TEXT;
 ?>
