@@ -1,8 +1,6 @@
 <?php
 if (Session::has_user()) { Router::return(); }
 
-$dname = null;
-$email = null;
 $errors = [];
 if (Request::is_post()) {
 	$dname = Request::param('dname');
@@ -25,7 +23,5 @@ end_post:
 
 render_page(['forms/new_user'], [
 	'title' => 'Sign up',
-	'dname' => $dname,
-	'email' => $email,
 	'errors' => $errors,
 ]);

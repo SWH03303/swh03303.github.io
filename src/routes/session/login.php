@@ -1,7 +1,6 @@
 <?php
 if (Session::has_user()) { Router::return(); }
 
-$email = null;
 $errors = [];
 if (Request::is_post()) {
 	$email = Request::param('email');
@@ -17,6 +16,5 @@ end_post:
 
 render_page(['forms/auth_user'], [
 	'title' => 'Login',
-	'email' => $email,
 	'errors' => $errors,
 ]);
