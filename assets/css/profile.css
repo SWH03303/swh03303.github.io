@@ -1,0 +1,32 @@
+@import "global.css";
+
+h2 { font-size: 20pt; }
+
+#account-container { min-width: 400px; max-width: 100%; }
+#applicant-container { min-width: 600px; max-width: 100%; }
+
+#no-applicant-message {
+	max-width: 600px;
+	padding: 1em 2em;
+	font-size: 14pt;
+	text-align: center;
+}
+
+#account-info {
+	display: grid;
+	grid-template-columns: 1fr max-content;
+	font-size: 16pt;
+}
+
+.edit-btn {
+	justify-content: center;
+	background-color: black;
+	color: white;
+	padding: 0 1em;
+	border-radius: var(--round);
+	font-size: 16pt;
+	font-weight: 600;
+	text-decoration: none;
+
+	&:hover { background-color: #333; }
+}

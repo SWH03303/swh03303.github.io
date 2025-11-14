@@ -1,7 +1,7 @@
 <?php
 class User {
 	private const KEY = 'user';
-	private const KEY_AUTH = 'user_auth';
+	private const KEY_INFO = 'user_account';
 
 	private function __construct (private string $email) {}
 
@@ -39,13 +39,13 @@ class User {
 		return $email? new self($email) : null;
 	}
 
-	public function is_manager(): bool {
-		$mgr = Session::get(self::KEY_AUTH);
-		if (!is_null($mgr)) { return $mgr; }
-		$db = Database::get();
-		$id = $db->query('SELECT id FROM user WHERE email = ?', [$this->email])[0]['id'];
-		$mgr = !empty($db->query('SELECT 1 FROM user_manager WHERE id = ?', [$id]));
-		Session::set(self::KEY_AUTH, $mgr);
-		return $mgr;
-	}
+	public function account(): Account {
+		$info = Session::get(self::KEY_INFO);
+		if (!is_null($info)) { return $info; }
+		$info = Account::_from_user($this->email);
+		Session::set(self::KEY_INFO, $info);
+		return $info;
+ 	}
+	public function applicant(): ?Applicant { return Applicant::_from_user($this); }
+	public function clear_account_cache() { Session::pop(self::KEY_INFO); }
 }
