@@ -21,9 +21,11 @@ class Applicant {
 		public string $phone,
 	) {}
 
-	public static function from_user(User $user): ?self {
+	// NOTE: Hidden method, use `User::applicant` instead
+	public static function _from_user(User $user): ?self {
 		$db = Database::get();
-		$rows = $db->query('SELECT * FROM user_applicant WHERE id = ?', [$user->id()]);
+		$id = $user->account()->id;
+		$rows = $db->query('SELECT * FROM user_applicant WHERE id = ?', [$id]);
 		if (is_null($rows) || empty($rows)) { return null; }
 		$row = $rows[0];
 		$dob = DateTimeImmutable::createFromFormat('Y-m-d', $row['dob']);
