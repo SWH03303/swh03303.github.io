@@ -2,6 +2,7 @@
 enum Gender: string {
 	case Male = 'm';
 	case Female = 'f';
+	case NonBinary = 'x';
 	case Other = '?';
 }
 
