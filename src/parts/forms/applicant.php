@@ -17,6 +17,10 @@
 			'x' => 'Non-binary (they/them)',
 			'?' => 'Prefer not to say',
 		]]);
+		render('input/binary', [
+			'Are you willing to submit to a background check if selected for employment?',
+			'background',
+		]);
 		render('csrf');
 	?>
 	<button type="submit">Submit</button>
