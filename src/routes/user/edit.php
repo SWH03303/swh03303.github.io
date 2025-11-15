@@ -49,8 +49,29 @@ if (Request::is_post()) {
 }
 end_post:
 
-render_page(fn() => render('forms/edit_user'),
+render_page(function() use ($errors, $account) {
+	echo '<form class="box flex-y flex-o" method="post">';
+	render('input',
+		'Email', 'email',
+		default: $data['account']->email,
+		required: false,
+	);
+	render('input',
+		'Display Name', 'display',
+		default: $data['account']->display,
+		required: false,
+	);
+	render('input',
+		'New Password', 'new-pass',
+		type: 'password',
+		placeholder: '(unchanged)',
+		required: false,
+	);
+	render('input', 'Repeat New Password', 'new-passrep' type: 'password', required: false);
+	render('input', 'Current Password', 'pass', type: 'password');
+	render('input/csrf');
+	echo '<button type="submit">Update</button></form>';
+	render('errors', $errors);
+},
 	title: 'Edit profile',
-	account: $user->account(),
-	errors: $errors,
 );
