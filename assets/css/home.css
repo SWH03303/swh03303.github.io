@@ -6,26 +6,27 @@ body > main {
 	width: 1400px;
 	font-size: 16pt;
 
-	h1 { font-size: 32pt; }
+	h1 { font-size: 40pt; }
 	h2 { font-size: 24pt; }
 	p { margin-left: 1em; }
 }
 
-#company-introduction {
+#website-introduction {
+	margin-top: 3em;
 	gap: var(--spacing);
-	border-radius: var(--round) var(--round) 0 0;
+	border-radius: var(--round) var(--round) var(--round) var(--round);
 }
 #company-title { margin: 0; }
 
 #site-info { gap: var(--spacing); }
-#site-description, #site-services {
+/* #site-description, #site-services {
 	align-items: flex-start;
 	border-radius: 0 0 var(--round) 0;
 }
 #site-description {
-	flex-grow: 2; /* Grow by 2 times compared to other fill elements */
+	flex-grow: 2;  --Grow by 2 times compared to other fill elements 
 	border-radius: 0 0 0 var(--round);
-}
+} */
 
 #secret {
 	position: absolute;
@@ -34,3 +35,40 @@ body > main {
 	left: 95%;
 }
 #secret::after { content: "?"; font-size: 100%; }
+
+#apply-now {
+	padding: 5em 5em;
+}
+
+.signup-button {
+	margin-top: 1em;
+	top: 4.5em;
+	right: 25px;
+	padding: .5em 1.5em;
+	border-radius: .7em;
+	background-color: black;
+	color: white;
+	font-size: 15pt;
+	text-decoration: none;
+	&:hover { background: #333; }
+	&::before { margin: 0 !important; }
+}
+
+#fre-asked-ques-head {
+	border-radius: var(--round) var(--round) 0 0;
+}
+
+#fre-asked-ques {
+	gap: var(--spacing);
+}
+
+#questions {
+	align-items: stretch;
+	flex-direction: row;
+	gap: var(--spacing);
+}
+
+.questions {
+	flex: 1 1;
+	border-radius: 0 0 var(--round) var(--round);
+}
