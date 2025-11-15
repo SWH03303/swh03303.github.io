@@ -2,9 +2,11 @@
 $label = $D[0] ?? $D['label'];
 $name = $D[1] ?? $D['name'] ?? label_to_name($label);
 $persist = $D['persist'] ?? true;
+$default = $D['default'] ?? null;
 $required = $D['required'] ?? true;
 
 $checked = (Request::is_post() && $persist)? Request::param($name) : null;
+$checked = is_null($checked)? $default : $checked;
 $checked = is_null($checked)? null : parse_bool($checked);
 
 $id = input_id()[1];

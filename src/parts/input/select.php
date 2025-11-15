@@ -3,9 +3,11 @@ $label = $D[0] ?? $D['label'];
 $name = $D[1] ?? $D['name'] ?? label_to_name($label);
 $options = $D[2] ?? $D['options'];
 $persist = $D['persist'] ?? true;
+$default = $D['default'] ?? null;
 $required = $D['required'] ?? true;
 
 $selected = (Request::is_post() && $persist)? Request::param($name) : null;
+$selected = is_null($selected)? $default : $selected;
 $unselected = is_null(array_find($options, fn($_, $k) => $k === $selected));
 
 $id = input_id()[1];

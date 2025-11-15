@@ -72,6 +72,8 @@ end_post:
 function render_header(string $text) { echo "<h2>$text</h2>"; }
 
 render_page(function() use ($errors) {
+	$info = Session::user()?->applicant();
+
 	echo <<<'TEXT'
 	<section class="flex-y flex-o">
 		<h1>Personal Info Submission</h1>
@@ -85,10 +87,10 @@ render_page(function() use ($errors) {
 	render('errors', $errors);
 	echo '<form id="personal-info" class="box flex-y" method="post">';
 	render_header('Identity');
-	render('input', 'First Name');
-	render('input', 'Last Name');
-	render('input', 'Date of Birth', 'dob', type: 'date');
-	render('input/select', 'Gender', options: [
+	render('input', 'First Name', default: $info?->first_name);
+	render('input', 'Last Name', default: $info?->last_name);
+	render('input', 'Date of Birth', 'dob', type: 'date', default: $info?->dob->format(DATE_FORMAT));
+	render('input/select', 'Gender', default: $info?->gender->value, options: [
 		'm' => 'Male (he/him)',
 		'f' => 'Female (she/her)',
 		'x' => 'Non-binary (they/them)',
@@ -96,21 +98,25 @@ render_page(function() use ($errors) {
 	]);
 
 	render_header('Address');
-	render('input', 'Street');
-	render('input', 'Town');
-	render('input/select', 'State', options: State::options());
-	render('input', 'Postcode', type: 'number');
+	render('input', 'Street', default: $info?->street);
+	render('input', 'Town', default: $info?->town);
+	render('input/select', 'State', default: $info?->state, options: State::options());
+	render('input', 'Postcode', type: 'number', default: $info?->postcode);
 
 	render_header('Contact');
-	render('input', 'Phone No.', 'phone');
+	render('input', 'Phone No.', 'phone', default: $info?->phone);
 
 	render_header('Questions');
 	render('input/binary',
 		'Are you willing to submit to a background check if selected for employment?',
 		'background',
+		default: $info?->can_check_background,
 	);
-	render('input/binary', 'Have you ever been convicted of a felony?', 'felony');
-	render('input/binary', 'Are you a veteran?', 'veteran');
+	render('input/binary',
+		'Have you ever been convicted of a felony?', 'felony',
+		default: $info?->is_convict,
+	);
+	render('input/binary', 'Are you a veteran?', 'veteran', default: $info?->is_veteran);
 	render('input/csrf');
 
 	echo '<button type="submit">Submit</button></form>';
