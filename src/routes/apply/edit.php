@@ -5,8 +5,8 @@ $errors = [];
 if (Request::is_post()) {
 	$first_name = ucfirst(Request::param('first-name'));
 	$last_name = ucfirst(Request::param('last-name'));
-	$dob = DateTimeImmutable::createFromFormat(DATE_FORMAT, Request::param('dob'));
-	$gender = Gender::tryFrom(Request::param('gender'));
+	$dob = Request::param('dob');
+	$gender = Request::param('gender');
 	$street = Request::param('street');
 	$town = Request::param('town');
 	$state = State::from_abbr(Request::param('state'));
@@ -23,8 +23,9 @@ if (Request::is_post()) {
 	if (strlen($last_name) > 20) { $errors[] = 'Last name is too long'; }
 	elseif (empty($last_name)) { $errors[] = 'Last name must not be empty'; }
 	if (!ctype_alpha($last_name)) { $errors[] = 'Last name must contain only letters'; }
-	if ($dob === false) { $errors[] = 'Invalid date of birth'; }
-	if (is_null($gender)) { $errors[] = 'Invalid gender option'; }
+	$dt = DateTimeImmutable::createFromFormat(DATE_FORMAT, $dob);
+	if ($dt === false) { $errors[] = 'Invalid date of birth'; }
+	if (is_null(Gender::tryFrom($gender))) { $errors[] = 'Invalid gender option'; }
 	if (strlen($street) > 40) { $errors[] = 'Street name is too long'; }
 	elseif (empty($street)) { $errors[] = 'Street name must not be empty'; }
 	if (!ctype_graph($street)) { $errors[] = 'Street name contains invalid character'; }
@@ -43,6 +44,28 @@ if (Request::is_post()) {
 	if (is_null($felony)) { $errors[] = 'Felony question must be answered'; }
 	if (is_null($veteran)) { $errors[] = 'Veteran question must be answered'; }
 	if (!empty($errors)) { goto end_post; }
+
+	$db = Database::get();
+	$id = Session::user()->account()->id;
+
+	$state = $state->abbr();
+	$res = $db->query(<<<'TEXT'
+		INSERT OR REPLACE INTO user_applicant(
+			id, first_name, last_name, dob, gender,
+			street, town, state, postcode, phone,
+			can_check_background, is_convict, is_veteran
+		) VALUES (
+			?, ?, ?, ?, ?,
+			?, ?, ?, ?, ?,
+			?, ?, ?
+		)
+		TEXT, [
+			$id, $first_name, $last_name, $dob, $gender,
+			$street, $town, $state, $postcode, $phone,
+			$background, $felony, $veteran,
+		]);
+	if (is_null($res)) { $errors[] = 'Failed to update database with new information'; }
+	else { Router::redirect('user'); }
 }
 end_post:
 
