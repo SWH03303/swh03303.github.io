@@ -38,4 +38,11 @@ class Session {
 
 	public static function user(): ?User { return User::_from_session(); }
 	public static function has_user(): bool { return !is_null(self::user()); }
+
+	public static function require_no_user() {
+		if (self::has_User()) { Router::return(); }
+	}
+	public static function require_user() {
+		if (!self::has_user()) { Router::redirect('user/login'); }
+	}
 }

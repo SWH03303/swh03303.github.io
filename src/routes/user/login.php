@@ -1,5 +1,5 @@
 <?php
-if (Session::has_user()) { Router::return(); }
+Session::require_no_user();
 
 $errors = [];
 if (Request::is_post()) {

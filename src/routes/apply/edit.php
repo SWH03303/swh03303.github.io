@@ -1,5 +1,5 @@
 <?php
-if (!Session::has_user()) { Router::redirect('user/login'); }
+Session::require_user();
 
 $errors = [];
 if (Request::is_post()) {

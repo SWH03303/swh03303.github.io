@@ -1,5 +1,5 @@
 <?php
-if (!Session::has_user()) { Router::return(); }
+Session::require_user();
 $user = Session::user();
 $check_email = !$user->account()->is_manager;
 
