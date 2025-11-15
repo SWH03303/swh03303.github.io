@@ -2,7 +2,7 @@
 $label = $data[0] ?? $data['label'];
 $name = $data[1] ?? $data['name'];
 $type = $data[2] ?? $data['type'] ?? 'text';
-$persist = $data['persist'] ?? ($type == 'text');
+$persist = $data['persist'] ?? ($type !== 'password');
 $default = $data['default'] ?? null;
 $required = $data['required'] ?? true;
 $placeholder = $data['placeholder'] ?? null;
