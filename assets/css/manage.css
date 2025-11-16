@@ -1,0 +1,35 @@
+@import "global.css";
+
+#content {
+	width: 1200px;
+	min-width: 75%;
+	flex-direction: row;
+	align-items: flex-start;
+
+	h1 {
+		z-index: 1; /* Raise header so its shadow is over the listings */
+		border-radius: .5em;
+	}
+	h2 { line-height: 1em; margin-bottom: .2em; } /* Fix high line gaps caused by Poppins font */
+
+	/* The `summary` element is used to show/hide content of the `details` element with a click.
+	 * This expands the element to exactly cover the listing box, turning the box into a button. */
+	article {
+		flex-basis: 200px;
+		flex-grow: 1;
+		max-width: 100%;
+
+		position: relative; /* Anchor */
+		padding: 20px;
+		border-radius: 1em;
+		justify-content: flex-start;
+	}
+
+	article:hover { background: #eaeaea; }
+	article:has(> details[open]) { flex-basis: 100%; }
+
+	*::before {
+		margin-right: .5em; /* Lazy whitespace */
+		font-weight: bold;
+	}
+}
