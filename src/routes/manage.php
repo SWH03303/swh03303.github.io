@@ -1,13 +1,17 @@
 <?php
 $db = Database::get();
-$entry = [];
-$section = [];
+$infos = [];
 
 foreach ($db->query('SELECT * FROM eoi') as $row) {
-    
+    $infos[] = $row;
+
+    // $entry = &$cates[$row['id']];
+	// $entry['id'] = "category-" . strtolower(str_replace(' ', '-', $row['name']));
+	// $entry['name'] = $row['name'];
+	// $entry['entries'] = [];
 }
 
-render_page(function() {
+render_page(function() use ($infos) {
 	echo 
     '<aside id="tools-bar" class="flex-y box"><ul>
         <form method="GET" action="search_result.php">
@@ -25,7 +29,7 @@ render_page(function() {
     </aside>
 
     <div id="listing-eois" class="fill flex-y box">';
-    foreach ($sections as $section) { render('eoi/section', $section); }
+    foreach ($infos as $info) { render('eoi/eoi_info', $info); }
     echo '</div>';
 	
 },
