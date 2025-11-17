@@ -39,9 +39,9 @@ render_page(function() use ($infos) {
     <section id="outer-box" class="flex flex-y">
         <div id="tool-box" class = "flex flex-o">
             <aside id="search-bar" class="flex-y box">
-                
+                <h2>Change Status: </h2>
                 <form method="GET" action=""
-                    <label>Change status: </label><br>
+                    <label></label>
                     <input type="text" 
                     name="status_change" 
                     placeholder="user_name: Bob..." value="' . html_sanitize($status_change) . '"
@@ -55,7 +55,7 @@ render_page(function() use ($infos) {
                     <input type="Submit" value="Change status">
                 </form>
 
-                <h3>Other tools:</h3>
+                <p>Other tools:</p>
                 <button onclick="window.location.href=\'/manage\'">Search</button>
                 <button onclick="window.location.href=\'/manager/delete\'">Delete</button>
             </aside>

@@ -35,8 +35,9 @@ render_page(function() use ($infos) {
     <section id="outer-box" class="flex flex-y">
         <div id="tool-box" class = "flex flex-o">
             <aside id="search-bar" class="flex-y box">
+                <h2>Delete: </h2>
                 <form method="GET" action=""
-                    <label>Delete: </label><br>
+                    <label></label>
                     <input type="text" 
                     name="delete" 
                     placeholder="user_name: Bob..." value="' . html_sanitize($delete) . '"
@@ -45,7 +46,7 @@ render_page(function() use ($infos) {
                     <input type="Submit" value="Delete">
                 </form>
 
-                <h3>Other tools:</h3>
+                <p>Other tools:</p>
                 <button onclick="window.location.href=\'/manage\'">Search</button>
                 <button onclick="window.location.href=\'/manager/changestatus\'">Change status</button>
             </aside>

@@ -25,8 +25,9 @@ render_page(function() use ($infos) {
     <section id="outer-box" class="flex flex-y">
         <div id="tool-box" class = "flex flex-o">
             <aside id="search-bar" class="flex-y box">
+                <h2>Search: </h2>
                 <form method="GET" action=""
-                    <label>Search: </label><br>
+                    <label></label>
                     <input type="text" 
                     name="search" 
                     placeholder="user_name: Bob..." value="' . html_sanitize($search) . '"
@@ -35,9 +36,17 @@ render_page(function() use ($infos) {
                     <input type="Submit" value="Search">
                 </form>
 
-                <h3>Other tools:</h3>
-                <button onclick="window.location.href=\'/manager/delete\'">Delete</button>
-                <button onclick="window.location.href=\'/manager/changestatus\'">Change status</button>
+                <article id="other-tools" class="flex-y box">
+                    <p>Other tools</p>
+                    <details class="flex flex-y eoi-details">
+                        <summary></summary>
+                        <hr>
+                        <button onclick="window.location.href=\'/manager/delete\'">Delete</button>
+                        <button onclick="window.location.href=\'/manager/changestatus\'">Change status</button>
+                        <hr>
+                    </details>
+                </article>
+                
             </aside>
 
             <aside id="guide-bar" class="flex-y box">
