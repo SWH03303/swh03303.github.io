@@ -27,6 +27,9 @@
 	article:has(> details[open]) { 
 		flex-basis: 100%; 
 		background: #eaeaea;
+		summary {
+			height: 10%;
+		}
 	}
 
 	*::before {
@@ -43,4 +46,9 @@
 
 #single_eoi {
 	align-self: stretch;
+}
+
+#listing-eois {
+	flex-direction: column;
+	gap: var(--spacing);
 }
