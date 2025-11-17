@@ -1,7 +1,15 @@
 <?php
-render_page(function() {
+$msg_code = Request::param('msg') ?? null;
+$msg = match ($msg_code) {
+	'choose_first' => 'You need to choose a job here first before applying for it.',
+	default => null,
+};
+
+render_page(function() use (&$msg) {
 	$sections = JobSection::all();
-	echo '<aside id="category-navigation" class="flex-y box"><ul>';
+	echo '<aside id="category-navigation" class="flex-y box">';
+	if (!is_null($msg)) { echo "<p>$msg</p>"; }
+	echo '<h1>Jump to</h1><ul>';
 	foreach ($sections as $s) {
 		$empty = $s->is_empty()? ' class="empty"' : "";
 		$cate = $s->category;

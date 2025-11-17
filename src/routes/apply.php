@@ -2,6 +2,9 @@
 Session::require_user();
 if (is_null(Session::user()->applicant())) { Router::redirect('apply/edit'); }
 
+$job_id = Request::param('id');
+if (is_null($job_id)) { Router::redirect('jobs?msg=choose_first'); }
+
 $errors = [];
 if (Request::is_post()) {
 }

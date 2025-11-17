@@ -54,7 +54,17 @@
 		text-align: right;
 	}
 
-	&::before {
+	> p:first-child {
+		margin-bottom: 20px;
+		align-self: flex-end;
+		max-width: 300px;
+		font-weight: 600;
+		font-size: 12pt;
+		text-align: right;
+		text-decoration: underline wavy red;
+	}
+
+	h1 {
 		content: "Jump to";
 		font-weight: bold;
 		font-size: 24pt;
