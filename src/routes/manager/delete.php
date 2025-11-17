@@ -29,41 +29,7 @@ render_page(function() use ($infos) {
         'last_name:'  => 'last_name', 
     ];
 
-
-    echo 
-    '
-    <section id="outer-box" class="flex flex-y">
-        <div id="tool-box" class = "flex flex-o">
-            <aside id="search-bar" class="flex-y box">
-                <h2>Delete: </h2>
-                <form method="GET" action=""
-                    <label></label>
-                    <input type="text" 
-                    name="delete" 
-                    placeholder="user_name: Bob..." value="' . html_sanitize($delete) . '"
-                >
-
-                    <input type="Submit" value="Delete">
-                </form>
-
-                <p>Other tools:</p>
-                <button onclick="window.location.href=\'/manage\'">Search</button>
-                <button onclick="window.location.href=\'/manager/changestatus\'">Change status</button>
-            </aside>
-
-            <aside id="guide-bar" class="flex-y box">
-                <p>Tag guide: </p>
-                <ul>
-                    <li>Use tag "job_id:" to filter for jobs ("job: VKE99, ZBA91;") </li>
-                    <li>Use tag "user_id:" to filter specific applicant id ("user_id: 24125;")</li>
-                    <li>Use tag "first_name:" to filter specific first name ("first_name: Bob, Jake;")</li>
-                    <li>Other tags: last_name</li>
-                </ul>
-            </aside>
-        </div>
-
-        <div id="listing-eois" class="fill flex-y box">' ;
-
+    echo search_head_html('Delete: ', 'Delete', $delete, true, false, true , false);
     if ($delete) {
         echo '
             <form method="POST" action="">

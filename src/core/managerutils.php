@@ -47,7 +47,7 @@ function other_tools(bool $search, $delete, $change): string {
 }
 
 
-function search_head_html(string $h2val, $searchBarName, $search, bool $dropdownChange) : string {
+function search_head_html(string $h2val, $searchBarName, $search, $extra_search, $extra_delete, $extra_change, bool $dropdownChange) : string {
     $searchTags = [
         'job_id:' => 'job_id', 
         'user_id:'  => 'user_id', 
@@ -83,7 +83,7 @@ function search_head_html(string $h2val, $searchBarName, $search, bool $dropdown
                     <input type="Submit" value="' . $searchBarName . '">
                 </form>
 
-                '. other_tools(false, true, true) .'
+                '. other_tools($extra_search, $extra_delete, $extra_change) .'
                 
             </aside>
 
@@ -96,6 +96,8 @@ function search_head_html(string $h2val, $searchBarName, $search, bool $dropdown
 
     return $search_func;
 }
+
+
 
 
 

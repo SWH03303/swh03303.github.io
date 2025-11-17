@@ -19,8 +19,8 @@ render_page(function() use ($infos) {
         'last_name:'  => 'last_name', 
     ];
 
-    echo search_head_html('Search: ', 'Search', false, $search);
-    
+    echo search_head_html('Search: ', 'Search', $search, true, true, false , false);
+
     if ($search) {
         $terms = explode(';', $search);
 
