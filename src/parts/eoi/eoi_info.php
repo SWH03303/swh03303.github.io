@@ -1,6 +1,6 @@
 <?php $D = $D[0];?>
 
-<article class="flex-y flex-o box">
+<article id="single_eoi" class="flex-y box">
     <?php
         $db = Database::get();
 
@@ -28,7 +28,8 @@
 	</div>
 
     <details class="flex flex-y eoi-details">
-        <!-- <summary></summary> -->
+        <summary></summary>
+        <hr>
         <h2>Applicant profile</h2>
         <hr>
 

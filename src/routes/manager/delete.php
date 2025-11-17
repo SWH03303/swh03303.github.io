@@ -32,7 +32,7 @@ render_page(function() use ($infos) {
 
     echo 
     '
-    <section class="flex flex-y">
+    <section id="outer-box" class="flex flex-y">
         <div id="tool-box" class = "flex flex-o">
             <aside id="search-bar" class="flex-y box">
                 <form method="GET" action=""

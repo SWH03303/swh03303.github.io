@@ -15,7 +15,6 @@
 	/* The `summary` element is used to show/hide content of the `details` element with a click.
 	 * This expands the element to exactly cover the listing box, turning the box into a button. */
 	article {
-		flex-basis: 200px;
 		flex-grow: 1;
 		max-width: 100%;
 
@@ -25,7 +24,6 @@
 		justify-content: flex-start;
 	}
 
-	article:hover {  }
 	article:has(> details[open]) { 
 		flex-basis: 100%; 
 		background: #eaeaea;
@@ -35,4 +33,14 @@
 		margin-right: .5em; /* Lazy whitespace */
 		font-weight: bold;
 	}
+	
+}
+
+#outer-box, #tool-box {
+	gap: var(--spacing);
+	align-items: stretch;
+}
+
+#single_eoi {
+	align-self: stretch;
 }
