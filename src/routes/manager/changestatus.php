@@ -33,7 +33,45 @@ render_page(function() use ($infos) {
         'last_name:'  => 'last_name', 
     ];
 
-    echo search_head_html('Change status: ', 'Change', $status_change, true, true, false , true);
+
+    echo 
+    '
+    <section id="outer-box" class="flex flex-y">
+        <div id="tool-box" class = "flex flex-o">
+            <aside id="search-bar" class="flex-y box">
+                <h2>Change Status: </h2>
+                <form method="GET" action=""
+                    <label></label>
+                    <input type="text" 
+                    name="status_change" 
+                    placeholder="user_name: Bob..." value="' . html_sanitize($status_change) . '"
+                >
+
+                    <select name="status_change_to">
+                        <option value="New">New</option>
+                        <option value="Current">Current</option>
+                        <option value="Final">Final</option>
+                    </select>
+                    <input type="Submit" value="Change status">
+                </form>
+
+                <p>Other tools:</p>
+                <button onclick="window.location.href=\'/manage\'">Search</button>
+                <button onclick="window.location.href=\'/manager/delete\'">Delete</button>
+            </aside>
+
+            <aside id="guide-bar" class="flex-y box">
+                <p>Tag guide: </p>
+                <ul>
+                    <li>Use tag "job_id:" to filter for jobs ("job: VKE99, ZBA91;") </li>
+                    <li>Use tag "user_id:" to filter specific applicant id ("user_id: 24125;")</li>
+                    <li>Use tag "first_name:" to filter specific first name ("first_name: Bob, Jake;")</li>
+                    <li>Other tags: last_name</li>
+                </ul>
+            </aside>
+        </div>
+
+        <div id="listing-eois" class="fill flex-y box">' ;
 
     if ($status_change) {
         echo '

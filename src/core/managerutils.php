@@ -75,6 +75,7 @@ function search_head_html(string $h2val, $searchBarName, $search, $extra_search,
                         <option value="Current">Current</option>
                         <option value="Final">Final</option>
                     </select>
+                    <input type="Submit" value="Change status">
         ';
     }
 
