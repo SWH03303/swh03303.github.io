@@ -290,8 +290,9 @@ form .input-check {
 	box-shadow: 0 0 20px #0004;
 	backdrop-filter: blur(5px); /* Blur everything behind this element */
 }
+.box-linked { --round: 1.5em; }
 .box-linked > :first-child {
-	margin-bottom: 5px;
+	margin-bottom: var(--spacing);
 
 	h2 { font-size: 18pt; }
 	a {
