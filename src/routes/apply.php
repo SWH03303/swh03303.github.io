@@ -8,8 +8,44 @@ if (is_null($job_id)) { to_list('choose_first'); }
 $job = Job::get($job_id);
 if (is_null($job)) { to_list('invalid'); }
 
+enum TimePlan: string {
+	case FullTime = 'full';
+	case PartTime = 'part';
+	case Temporary = 'temp';
+}
+
 $errors = [];
 if (Request::is_post()) {
+	$salary = Request::param('desired-salary');
+	$exp = Request::param('experience');
+	$start = Request::param('start-date');
+	$time = Request::param('time');
+	$opts = [];
+
+	foreach ($job->reqs->opts as $idx => $opt) {
+		$accept = Request::param("affirm-opt-$idx") ?? 'off';
+		$opts[$idx] = parse_bool($accept);
+	}
+
+	$salary = str_replace(',', '', $salary);
+	if (!ctype_digit($salary)) { $errors[] = 'Salary must be a number'; }
+	else {
+		$salary = intval($salary);
+		if (!new Range($job->salary->min, $job->salary->max)->contains($salary))
+			{ $errors[] = 'Salary must be in specified range'; }
+	}
+	if (!ctype_digit($exp)) { $errors[] = 'Experience must be a number'; }
+	else {
+		$exp = intval($exp);
+		if (!$job->experience->contains($exp))
+			{ $errors[] = 'Years of experience must be in specified range'; }
+	}
+	$dt = DateTimeImmutable::createFromFormat(DATE_FORMAT, $start);
+	if ($dt === false) { $errors[] = 'Invalid employment start date'; }
+	if (is_null(TimePlan::tryFrom($time))) { $errors[] = 'Invalid time plan'; }
+	if (!empty($errors)) { goto end_post; }
+
+	echo "good"; // DEBUG:
 }
 end_post:
 
