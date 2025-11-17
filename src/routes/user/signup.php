@@ -35,6 +35,7 @@ render_page(function() use ($errors) {
 	render('input/csrf');
 	render('input/submit', 'Sign up!');
 	render('errors', $errors);
+	echo '</form>';
 },
 	title: 'Sign up',
 );

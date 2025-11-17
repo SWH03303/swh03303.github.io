@@ -73,6 +73,7 @@ render_page(function() use ($errors, $account) {
 	render('input/csrf');
 	render('input/submit', 'Update');
 	render('errors', $errors);
+	echo '</form>';
 },
 	title: 'Edit profile',
 );

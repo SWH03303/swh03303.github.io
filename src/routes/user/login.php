@@ -26,6 +26,7 @@ render_page(function() use ($errors) {
 	render('input/csrf');
 	render('input/submit', 'Login');
 	render('errors', $errors);
+	echo '</form>';
 },
 	title: 'Login',
 );
