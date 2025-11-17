@@ -9,6 +9,8 @@ CREATE TABLE eoi (
 
 	start_date DATE NOT NULL,
 	desired_salary INTEGER NOT NULL,
+	timeplan TEXT NOT NULL
+		CHECK(timeplan IN ('full', 'part', 'temp')),
 	extra TEXT NOT NULL, -- Additional qualifications
 
 	status TEXT NOT NULL
