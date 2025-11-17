@@ -2,9 +2,9 @@
 
 #application-header { margin-bottom: 50px; }
 
-#application-form { width: 400px; }
+#application-form {
+	width: 400px;
 
-/* Reduce boldness */
-label[for="input-documents"],
-label[for="input-start"] { font-weight: 500; }
-#input-start { border: none; }
+	/* Reduce boldness */
+	.input-check, .input-vert { label { font-weight: 500; }}
+}
