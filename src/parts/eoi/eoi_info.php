@@ -49,7 +49,7 @@
             
             <p>status_change_individual[' . $D['id'] . ']</p>
             <form method="POST" action="">
-                <input type="Submit" name="status_change_individual_"' . $D['id'] . ' value="Change Status">
+                <input type="Submit" name="status_change_individual_' . $D['id'] . '" value="Change Status">
                 <input type="text" name="status_change_individual[' . $D['id'] . ']" placeholder="New">
             </form>
         </div>
